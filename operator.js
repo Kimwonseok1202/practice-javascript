@@ -37,4 +37,4 @@ for (let i = 0; i < 11; i++) {
   console.log(`q2.${i}`);
 }
 
-console.log("ttt");
+console.log("test");
