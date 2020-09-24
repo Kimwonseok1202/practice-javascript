@@ -3,7 +3,7 @@
 // Function의 구성
 // function name(param1, param2) {body... return; }
 // 1개의 함수는 1가지 일만하게 설정해야된다.
-// function은 object이다.
+// function은 object 일종이다.
 function printHello() {
   console.log("Hello");
 }
@@ -39,5 +39,68 @@ function printAll(...args) {
   for (let i = 0; i < args.length; i++) {
     console.log(args[i]);
   }
+  for (const arg of args) {
+    console.log(arg);
+    // arg of args 를 하게 되면 뒤에있는 args가 앞에 arg에다가 차례차례 출력하게 한다.
+  }
 }
-console.log("a", "b", "c");
+printAll("a", "b", "c");
+
+// 5.Local scope
+// 밖에서는 안이 보이지 않고 안에서만 밖을 볼 수 있다.
+// 안에서는 출력이가능한데 밖으로 가지고 나오면 출력을 할수없다.
+let globalMessage = "global"; //global variable
+function printMessage() {
+  let message = "hello";
+  console.log(message); //local variable
+  console.log(globalMessage);
+}
+printMessage();
+
+// 6.Return a value
+function sum(a, b) {
+  return a + b;
+}
+const result = sum(1, 2);
+console.log(`sum: ${sum(1, 2)}`);
+
+// 7. Early return, early exit
+
+// bad
+function upgradeUser(uesr) {
+  if (uesr.point > 10) {
+    // long upgrade logic...
+    // 블록 안에서 logic을 많이 사용허면 가독성이 떨어진다.
+  }
+}
+
+// good
+function upgradeUser(user) {
+  if (user.point <= 10) {
+    // 조건이 맞지 않을때는 빠르게 return을 사용해서 함수를 종료 하고
+    // 조건이 맞을때만 필요한 logic을 실행하게 하는게 좋다.
+    return;
+  }
+  //  long upgrade logic...
+}
+
+// 1.Function expression
+const print = function (number) {
+  //함수에 이름이 없는것을 anonymous function
+  console.log("print", number); //function을 할당함과 동시에 Print 변수에 할당
+};
+// 이름있는 함수는 named function
+print(1);
+const printAgain = print;
+printAgain(2);
+const sumAgain = sum;
+console.log(sumAgain(1, 3));
+// 변수안에 함수를 넣어도 실행이 가능하다.
+
+//Function expression과 Function declaration의 차이
+// Function expression의 가장큰 차이점은 위에 예제처럼 할당된 다음부터 호출이 가능하다.
+// Function declaration은 hoisted가 되어있어 함수 호출 이전에 사용이 가능하다
+// 예를들어 sum함수가 61번쨰 줄에서 할당이 되었지만 그 위로 올라가서 sum을 사용하게 되어도 결과값이 나온다.
+// 그 이유는 자바스크립트 엔진이 선언한것을 제일위로 올려주기 떄문이다. (나중에 심화과정에서 자세히.)
+
+// 5장 18:30 callback처음부분 부터 보기
