@@ -103,5 +103,70 @@ console.log(sumAgain(1, 3));
 // 예를들어 sum함수가 61번쨰 줄에서 할당이 되었지만 그 위로 올라가서 sum을 사용하게 되어도 결과값이 나온다.
 // 그 이유는 자바스크립트 엔진이 선언한것을 제일위로 올려주기 떄문이다. (나중에 심화과정에서 자세히.)
 
-// 5장 18:30 callback처음부분 부터 보기
-// ?
+// 2.Callback function using function expression
+function randomQuiz(answer, printYes, printNo) {
+  if (answer === "love you") {
+    printYes();
+  } else {
+    printNo();
+  }
+}
+const printYes = function () {
+  console.log("Yes!");
+};
+const printNo = function () {
+  console.log("No!");
+};
+randomQuiz("wrong", printYes, printNo);
+randomQuiz("love you", printYes, printNo);
+
+// tip: Arrow function
+// 무조건 anonymous function일때 사용
+const simplePrint = function () {
+  console.log("simpleFunction");
+};
+
+const SimplePrint = () => console.log("SimpleFunction!");
+// 중간에 =>가 있기에 Arrow function이다. 간편하게 사용할수있다.
+simplePrint();
+SimplePrint();
+
+const add = function (a, b) {
+  return a + b;
+};
+
+const Add = (A, B) => A + B;
+// Arrow function을 사용하면 이만큼이나 간편해진다.
+
+const simpleadd = (a, b) => {
+  // 많은 내용을 넣어야 할 경우 이런식으로 사용한다.
+  return a + b; //대신 이런식으로 return을 무조건 해줘야한다.
+};
+
+// tip : IIFE: Immediately Invoked Function Expression
+function hello() {
+  console.log("IIFE");
+}
+hello();
+// 함수를 출력할려면 아래 내용을 써줘야 하지만 자체적으로 괄호를 넣어주게 되면 바로 출력이 된다.
+(function Hello() {
+  console.log("iife");
+})();
+
+// Function Quiz
+// function calculate (command, a, b)
+// command: (add, subtract, divide, multiply, remainder)
+
+function calculate(command, a, b) {
+  switch (command) {
+    case "add":
+      console.log(`${a}+${b}`);
+      break;
+    case "subtract":
+      console.log(`${a}-${b}`);
+      break;
+    default:
+      console.log(0);
+      break;
+  }
+}
