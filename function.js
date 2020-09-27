@@ -158,15 +158,12 @@ hello();
 // command: (add, subtract, divide, multiply, remainder)
 
 function calculate(command, a, b) {
-  switch (command) {
-    case "add":
-      console.log(`${a}+${b}`);
-      break;
-    case "subtract":
-      console.log(`${a}-${b}`);
-      break;
-    default:
-      console.log(0);
-      break;
-  }
+  if (command === "add") {
+    console.log(`add: ${add(a, b)}`);
+  } else console.log("0");
 }
+
+const add = function (a, b) {
+  return a + b;
+};
+calculate(add, 1, 2);
