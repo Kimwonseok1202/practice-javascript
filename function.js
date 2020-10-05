@@ -158,12 +158,18 @@ hello();
 // command: (add, subtract, divide, multiply, remainder)
 
 function calculate(command, a, b) {
-  if (command === "add") {
-    console.log(`add: ${add(a, b)}`);
-  } else console.log("0");
+  switch (command) {
+    case "add":
+      return a + b;
+    case "substract":
+      return a - b;
+    case "divide":
+      return a / b;
+    case "multiply":
+      return a * b;
+    case "remainder":
+      return a % b;
+    default:
+      throw Error("unkonwn command");
+  }
 }
-
-const add = function (a, b) {
-  return a + b;
-};
-calculate(add, 1, 2);
