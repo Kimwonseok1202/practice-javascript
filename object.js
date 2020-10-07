@@ -101,4 +101,4 @@ const mixed = Object.assign({}, fruit1, fruit2, fruit3);
 console.log(mixed.color);
 console.log(mixed.size);
 
-console.log("end");
+console.log("object end");
